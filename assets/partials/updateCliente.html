@@ -1,0 +1,41 @@
+<md-dialog>
+    <form ng-cloak>
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Editar cliente</h2>
+            </div>
+        </md-toolbar>
+ 
+        <md-dialog-content>
+            <div class="md-dialog-content">
+ 
+                <md-input-container class="md-block">
+                    <label>Nombre</label>
+                    <input ng-model="nombre">
+                </md-input-container>
+ 
+                <md-input-container class="md-block">
+                    <label>Apellido</label>
+                    <input ng-model="apellido">
+                </md-input-container>
+ 
+                <md-input-container class="md-block">
+                    <label>Usuario</label>
+                    <input ng-model="usuario">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Contraseña</label>
+                    <input ng-model="contrasena">
+                </md-input-container>
+ 
+            </div>
+        </md-dialog-content>
+ 
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button ng-click="updateCliente()" class="md-primary">Confirmar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

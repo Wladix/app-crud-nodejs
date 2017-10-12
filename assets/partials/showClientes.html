@@ -1,0 +1,43 @@
+
+ <div layout="row" ng-controller="clienteCtrl" ng-cloak>
+    <div flex="10"></div>
+ 
+    <div flex="80" class='m-20px-0'>
+ 
+         <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <!-- Titulo -->
+                <div flex md-truncate>
+                    <h3 class="md-headline">Modulo clientes </h3>
+                </div>
+ 
+                <md-button class="md-raised" ng-click="showModalAddCliente()">Agregar cliente </md-button>
+            </div>
+        </md-toolbar>
+ 
+         <md-content flex>
+            <!-- Funcion para mostrar clientes -->
+            <md-list ng-init="showClientes()">
+                <md-list-item class="md-3-line" ng-repeat="cliente in clientes">
+ 					
+                    <!-- Listado de clientes -->
+                    <div class="md-list-item-text">
+                        <h3>{{cliente.nombre}}</h3>
+                        <h4>{{cliente.apellido}}</h4>
+                        <p>{{cliente.usuario}}</p>
+                    </div>
+ 
+                    <!-- 'Buscar', 'Editar' y 'Borrar' -->
+                    <div class="md-secondary-container">
+                        <md-button class="md-raised md-info" ng-click="showOneCliente(cliente.id)">Detalles</md-button>
+                        <md-button class="md-raised md-primary" ng-click="showModalUpdateCliente(cliente.id)">Editar</md-button>
+                        <md-button class="md-raised md-danger" ng-click="showModalDeleteCliente($event, cliente.id)">Borrar</md-button>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+ 
+    <div flex="10"></div>
+</div>
