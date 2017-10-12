@@ -1,0 +1,32 @@
+<div ng-controller="loginCtrl" layout="column" layout-align="center center" layout-fill="layout-fill" class="layout-fill ng-scope layout-align-center-center layout-column">
+
+  <div class="loginBox md-whiteframe-z1 layout-column" layout="column">
+
+    <md-toolbar class="md md-toolbar-transitions">
+      <h2 class="md-toolbar-tools"><span>Inicio de sesión</span></h2>
+    </md-toolbar>
+
+    <md-content class="md-padding md layout-column" layout="column">
+      
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Usuario</label>
+        <input type="text" ng-model="usuario" class="ng-pristine ng-untouched ng-valid md-input" tabindex="0" aria-invalid="false"><div class="md-errors-spacer"></div>
+      </md-input-container>
+      
+      <md-input-container class="">
+        <label for="input_1">Contraseña</label>
+        <input type="password" ng-model="contrasena" class="ng-pristine ng-untouched ng-valid md-input" tabindex="0" id="input_1" aria-invalid="false"><div class="md-errors-spacer"></div>
+      </md-input-container>
+      
+      <div class="md-secondary-container">
+        <md-button class="md-raised md-primary" ng-click="loginCliente(cliente.usuario)">Iniciar</md-button>
+        <div flex="flex" class="flex"></div>
+        <!-- <a class="md-button" href=""><span class="ng-scope">Recuperar contraseña</span></a> -->
+        <a class="md-button" ng-click="showModalAddCliente()"><span class="ng-scope">Crear nuevo cliente</span></a>
+      </div>
+
+    </md-content>
+
+  </div>
+
+</div>

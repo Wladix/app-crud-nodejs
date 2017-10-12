@@ -1,13 +1,10 @@
 app
 
-.controller("clienteCtrl", function($scope, $mdDialog, $mdToast, crudFactory)
-{
+.controller("clienteCtrl", function($scope, $mdDialog, $mdToast, crudFactory){
 
 	$scope.showClientes = function(){		  
-		crudFactory.showClientes().then(function successCallback(response){
-			console.log(response);
-			$scope.clientes = response.data;
-			console.log(response.data);
+		crudFactory.showClientes().then(function successCallback(response){			
+			$scope.clientes = response.data;			
 		}, function errorCallback(response){
 			$scope.showToast("No se logro mostrar lista de clientes");
 		});
@@ -37,11 +34,11 @@ app
             }
         );
  
-    }, function errorCallback(response){
-        $scope.showToast("No se logro mostrar el registro");
-    });
+    	}, function errorCallback(response){
+        	$scope.showToast("No se logro mostrar el registro");
+    	});
  
-}
+	}
 
 	$scope.showModalAddCliente = function(event){
 		$mdDialog.show({
@@ -74,11 +71,11 @@ $scope.showModalUpdateCliente = function(id){
     crudFactory.showOneCliente(id).then(function successCallback(response){
  
         // Colocamos los valores
-        $scope.id = response.data.id;
-        $scope.nombre = response.data.nombre;
-        $scope.apellido = response.data.apellido;
-        $scope.usuario = response.data.usuario;
-        $scope.contrasena = response.data.contrasena;
+        $scope.id = response.data[0].id;
+        $scope.nombre = response.data[0].nombre;
+        $scope.apellido = response.data[0].apellido;
+        $scope.usuario = response.data[0].usuario;
+        $scope.contrasena = response.data[0].contrasena;
  
         $mdDialog.show({
             controller: DialogController,
@@ -195,3 +192,64 @@ $scope.deleteCliente = function(){
 	}
 
 })
+
+app.controller("loginCtrl", function($scope, $mdDialog, $mdToast, $location, crudFactory){
+
+	$scope.loginCliente = function(){
+    crudFactory.loginCliente($scope.usuario).then(function successCallback(response){  
+    	if(response.data.length == 0){
+    		$scope.showToast('Usuario invalido');
+    	}else{  
+    		if(response.data[0].contrasena == $scope.contrasena+""){
+				$location.path( "/cliente" );
+    		}else{
+    			$scope.showToast('Contraseña invalida')
+    		}
+    		
+    	}
+ 		
+ 		 
+    }, function errorCallback(response){
+        $scope.showToast("Error al consultar usuario");
+    });
+ 
+}
+
+	$scope.showToast = function(message){
+		$mdToast.show(
+			$mdToast.simple()
+			.textContent(message)
+			.hideDelay(3000)
+			.position("top right")
+			);
+	}
+
+	$scope.showModalAddCliente = function(event){
+		$mdDialog.show({
+			controller: DialogController,
+			templateUrl: 'partials/createCliente.html',
+			parent: angular.element(document.body),
+			clickOutsideToClose: true,
+			scope: $scope,
+			preserveScope: true,
+			fullscreen: true
+		});
+	}
+
+	$scope.addCliente = function(){ 
+		crudFactory.addCliente($scope).then(function successCallback(response){
+			$scope.showToast("Usuario creado correctamente, puede ingresar");			
+			$scope.cancel();
+
+		}, function errorCallback(response){
+			$scope.showToast("No se logro agregar al cliente");
+		});
+	}
+
+	function DialogController($scope, $mdDialog) {
+		$scope.cancel = function() {
+			$mdDialog.cancel();
+		};
+	}
+
+});

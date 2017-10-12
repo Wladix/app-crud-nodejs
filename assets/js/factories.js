@@ -47,12 +47,20 @@ app
 };
 
 	factory.deleteCliente = function(id){
-    return $http({
-        method: 'DELETE',
-        // data: { 'id' : id },
-        url: 'http://localhost:1337/cliente/destroy/' + id
-    });
-};
+    	return $http({
+        	method: 'DELETE',
+        	// data: { 'id' : id },
+        	url: 'http://localhost:1337/cliente/destroy/' + id
+    	});
+	};
+
+	factory.loginCliente = function(usuario){
+		return $http({
+			method: 'GET',
+			data: {'usuario' : usuario},
+			url: 'http://localhost:1337/cliente?usuario='+usuario
+		});
+	}
 
 	return  factory;
 });

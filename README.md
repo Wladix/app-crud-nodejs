@@ -7,12 +7,12 @@ Correr el script .sql en Mysql
 
 # Paso 2 
 
-Configorar la base de datos localmente en los archivos connections y models
+Configurar la base de datos localmente en los archivos del Sails JS tales como "connections" y "models"
 
 # Paso 3
 
-Verificar dependencias
+Entrar a la url localhost:1337/#/login
 
 #Paso 4
 
-Correr servidor
+Crearse usuario y luego loguearse con ese usuario
